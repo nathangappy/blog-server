@@ -10,6 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.get('/favicon.ico', (req, res) => res.status(204));
 
 // Server Home Route
 app.get('/', (req, res) => {
