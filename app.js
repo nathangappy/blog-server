@@ -2,6 +2,7 @@ const express = require('express');
 const request = require('request');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const sgMail = require('@sendgrid/mail');
 // const path = require('path');
 
 const app = express();
@@ -54,6 +55,25 @@ app.post('/subscribe', (req, res) => {
   } else {
     res.status(404).send({ message: 'Failed' });
   }
+});
+
+// send email route
+app.post('/contact', (req, res) => {
+  const { name, email, message } = req.body;
+  console.log(name, email, message);
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  const msg = {
+    to: 'team@psykologie.com',
+    subject: 'Psykologie site message',
+    from: 'team@psykologie.com',
+    text: message,
+    reply_to: {
+      email: email,
+      name: name
+    }
+  };
+  sgMail.send(msg);
+  res.sendStatus(200);
 });
 
 // Port Setup
