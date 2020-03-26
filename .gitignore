@@ -5,3 +5,4 @@ node_modules
 !.elasticbeanstalk/*.global.yml
 sendgrid.env
 dev.env
+aws-elastic-beanstalk-cli-setup

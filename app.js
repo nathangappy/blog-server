@@ -21,7 +21,6 @@ app.get('/', (req, res) => {
 // Subscribe Route
 app.post('/subscribe', (req, res) => {
   const { email } = req.body;
-  console.log(req.body);
 
   const mcData = {
     members: [
@@ -60,7 +59,6 @@ app.post('/subscribe', (req, res) => {
 // send email route
 app.post('/contact', (req, res) => {
   const { name, email, message } = req.body;
-  console.log(name, email, message);
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
   const msg = {
     to: 'team@psykologie.com',
